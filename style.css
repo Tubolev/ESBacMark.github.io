@@ -1,0 +1,63 @@
+#subject{
+ width: 30px;
+}
+#step1{
+	background-color:	#D3D3D3;
+	padding-bottom:1px;
+}
+#step2{
+	background-color:	#c3c3c3;
+}
+#step3{
+	background-color:	#b3b3b3;
+}
+#step4{
+	background-color:	#a3a3a3;
+}
+
+#step5{
+	background-color:	#A0A0A0;
+	
+	font-family: impact;
+}
+table{
+	margin: auto;
+}
+tr, td, th{
+
+	border-bottom: 1px solid #ddd;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(1); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
+
+
+.row:hover{
+	background-color: #234567;
+	
+}
+.nav{
+	background-color: #234567;
+	color: yellow;
+	width: 20%;
+	
+}
+.jumbotron{
+	padding-top: 1px;
+	padding-bottom:1px;
+	margin: 0px;
+}
+
+.footer{
+	background-color:	#D0D0D0;
+}
+
+
