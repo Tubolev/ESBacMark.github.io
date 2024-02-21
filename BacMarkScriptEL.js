@@ -1,4 +1,4 @@
-var subjects=["L1", "L2", "MA3", "MA5", "EP", "BI2", "GE2", "HI2", "PH2", "CHI", "PHY", "BI4", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR", "L1A", "L2A", "MAA", "MU2", "AR2", "ICT", "IEC", "SOC", "SCP", "L5", "LBI", "LCH", "LPH", "SPO"];
+var subjects=["L1", "L2", "MA3", "MA5", "EP", "STS", "GE2", "HI2", "PH2", "CHI", "PHY", "BIO", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR", "L1A", "L2A", "MAA", "MU2", "AR2", "ICT", "IEC", "SOC", "SCP", "L5", "LBI", "LCH", "LPH", "SPO","DRA","ELE"];
 var subPeriods, periods, listOpts;
 var indexes = [];
 var aMarkIDs = [];
@@ -14,8 +14,8 @@ function start(){
 
 }
 function check(){
-	let total=1;
-	let nonComp = 1;
+	let total=3;
+	let nonComp = 3;
 	for(var i = 0; i<subjects.length ;i++){
 		if(document.getElementById(subjects[i]).checked){
 			subPeriods = document.getElementById(subjects[i]).getAttribute("data-periods");
@@ -33,11 +33,11 @@ function addOptions(){
 	checkW1();
 	checkW2();
 	checkW3();
-	optsW4( "CHI", "PHY", "BI4", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR");
-	optsW5( "CHI", "PHY", "BI4", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR");
+	optsW4( "CHI", "PHY", "BIO", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR");
+	optsW5( "CHI", "PHY", "BIO", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR");
 	checkO1();
 	optsO2("GE2","GE4","HI2","HI4")
-	optsO3("BI2", "PH2", "CHI", "PHY", "BI4",  "PH4", "L3", "L4","ONL","MAA")
+	optsO3("STS", "PH2", "CHI", "PHY", "BIO",  "PH4", "L3", "L4","ONL","MAA")
 	optErr();
 }
 function printSubjects(){
@@ -294,7 +294,7 @@ function optErr(){
 	if(optErrors == 0){
 		errorMsg="";
 		document.getElementById("optErrors").innerHTML=errorMsg;
-		printSubjects("L1", "L2", "MA3", "MA5", "EP", "BI2", "GE2", "HI2", "PH2", "CHI", "PHY", "BI4", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR", "L1A", "L2A", "MAA", "MU2", "AR2", "ICT", "IEC", "SOC", "SCP", "L5", "LBI", "LCH", "LPH","SPO");
+		printSubjects("L1", "L2", "MA3", "MA5", "EP", "STS", "GE2", "HI2", "PH2", "CHI", "PHY", "BIO", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR", "L1A", "L2A", "MAA", "MU2", "AR2", "ICT", "IEC", "SOC", "SCP", "L5", "LBI", "LCH", "LPH","SPO", "DRA","ELE");
 	}
 	if(optErrors != 0){
 		errorMsg+="</ol>"
@@ -320,10 +320,7 @@ function checkErrors(NonComp, Total){
 		  errors++
 		  errorMsg += "<li>You can't choose both MA3 and MAA";
 	}
-	if(document.getElementById("BI2").checked == true && document.getElementById("BI4").checked == true){
-		errors++;
-		errorMsg += "<li>You can't choose both BI2 and BI4.<br>";
-	}	
+
 	if(document.getElementById("HI2").checked == true && document.getElementById("HI4").checked == true){
 		errors++;
 		errorMsg += "<li>You can't choose both HI2 and HI4.<br>";
@@ -336,9 +333,9 @@ function checkErrors(NonComp, Total){
 		errors++;
 		errorMsg += "<li> You can't choose both PH2 and PH4.<br>";
 	}
-	if(document.getElementById("BI2").checked == false && document.getElementById("BI4").checked == false && document.getElementById("CHI").checked == false && document.getElementById("PHY").checked == false){
+	if(document.getElementById("STS").checked == false && document.getElementById("BIO").checked == false && document.getElementById("CHI").checked == false && document.getElementById("PHY").checked == false){
 		errors++;
-		errorMsg += "<li>You need to choose BI2 or at least one of the 4 period sciences: CHI, PHY or BI4<br>";
+		errorMsg += "<li>You need to choose STS or at least one of the 4 period sciences: CHI, PHY or BIO<br>";
 	}
 	if(document.getElementById("PH2").checked == false && document.getElementById("PH4").checked == false){
 		errors++;
@@ -362,8 +359,8 @@ function checkErrors(NonComp, Total){
 		errorMsg += "<li>You need to choose L2.<br>";
 	}
 	if(document.getElementById("EP").checked == false){
-		errors++;
-		errorMsg += "<li> You need to choose EP.";
+		
+		errorMsg += "<li>You have not chosen EP. This is only possible if you are excused.</li>"
 	}
 	
 	if(document.getElementById("L1A").checked == true && document.getElementById("L2A").checked == true
@@ -378,7 +375,7 @@ function checkErrors(NonComp, Total){
 		errors++;
 		errorMsg += "<li> You can choose only one laboratory course.<br>";
 	}
-	if(document.getElementById("LBI").checked == true && document.getElementById("BI4").checked == false
+	if(document.getElementById("LBI").checked == true && document.getElementById("BIO").checked == false
 	||document.getElementById("LPH").checked == true && document.getElementById("PHY").checked == false
 	||document.getElementById("LCH").checked == true && document.getElementById("CHI").checked == false){
 		errors++;
@@ -412,7 +409,9 @@ function checkErrors(NonComp, Total){
 		  errorMsg += "<li>You need to have at least 29 periods others than complementary courses. You have now "+NonComp+" that kind of periods.";
 	}
 	if(errors==0){
-		errorMsg = "";
+		if(document.getElementById("EP").checked == false){
+			errorMsg = "<li>You have not chosen EP. This is only possible if you are excused.</li>"
+		}else{errorMsg = "";}
 		if(Total  > 35){
 		
 		errorMsg = "";
@@ -438,7 +437,7 @@ function bacOptions(){
 	
 	
 	for(i=0;i<arguments.length; i++){
-		if(document.getElementById(arguments[i]).checked && ["CHI", "PHY", "BI4", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR"].indexOf(document.getElementById(arguments[i]).value)>-1){
+		if(document.getElementById(arguments[i]).checked && ["CHI", "PHY", "BIO", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR"].indexOf(document.getElementById(arguments[i]).value)>-1){
 			listOpts += "<option value='"+arguments[i]+"'> "+arguments[i]+" </option>";
 		}
 	}
@@ -446,7 +445,7 @@ function bacOptions(){
 		listOpts += "<tr><td>Option 5</td><td><select name='Written5' id ='Written5' >";
 		
 	for(i=0;i<arguments.length; i++){
-		if(document.getElementById(arguments[i]).checked && ["CHI", "PHY", "BI4", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR"].indexOf(document.getElementById(arguments[i]).value)>-1){
+		if(document.getElementById(arguments[i]).checked && ["CHI", "PHY", "BIO", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR"].indexOf(document.getElementById(arguments[i]).value)>-1){
 			listOpts += "<option value='"+arguments[i]+"'> "+arguments[i]+" </option>";
 		}
 	}
@@ -473,7 +472,7 @@ function bacOptions(){
 		<tr><td>Option 3</td><td><select name='Oral3' id ='Oral3' >";
 	
 	for(i=0;i<arguments.length; i++){
-		if(document.getElementById(arguments[i]).checked && ["BI2", "PH2", "CHI", "PHY", "BI4", "PH4", "L3", "L4","ONL","MAA"].indexOf(document.getElementById(arguments[i]).value)>-1){
+		if(document.getElementById(arguments[i]).checked && ["STS", "PH2", "CHI", "PHY", "BIO", "PH4", "L3", "L4","ONL","MAA"].indexOf(document.getElementById(arguments[i]).value)>-1){
 			listOpts += "<option value='"+arguments[i]+"'> "+arguments[i]+" </option>";
 		}
 	}
@@ -488,7 +487,7 @@ function marks(){
 	<tr><td>Subject</td><td>A</td><td>B</td><td>Written</td><td>Oral</td><td>Final note</td></tr>";
 	for(i=0;i<arguments.length; i++){
 		if(document.getElementById(arguments[i]).checked){
-			if(["L1", "L2", "CHI", "PHY", "BI4", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR", "L1A", "L2A"].indexOf(document.getElementById(arguments[i]).value)>-1){
+			if(["L1", "L2", "CHI", "PHY", "BIO", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR", "L1A", "L2A"].indexOf(document.getElementById(arguments[i]).value)>-1){
 				listMarks += "<tr><td>"+arguments[i]+":\
 				</td><td><input type='number' id='"+i+"A' value = 0 min='0' max='10' step='0.1' style='width: 4em;'></td>\
 				<td><input type='number' id='"+i+"B' value = 0 min='0' max='10' step='0.1' style='width: 4em;'></td>\
