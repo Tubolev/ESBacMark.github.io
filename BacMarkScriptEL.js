@@ -1,4 +1,5 @@
 var subjects=["L1", "L2", "MA3", "MA5", "EP", "STS", "GE2", "HI2", "PH2", "CHI", "PHY", "BIO", "HI4", "GE4", "AR4", "MU4", "PH4", "L3", "ECO", "LAT", "L4","ONL", "AGR", "L1A", "L2A", "MAA", "MU2", "AR2", "ICT", "IEC", "SOC", "SCP", "L5", "LBI", "LCH", "LPH", "SPO","DRA","ELE", "ARH"];
+//ARH = Art history
 var subPeriods, periods, listOpts;
 var indexes = [];
 var aMarkIDs = [];
